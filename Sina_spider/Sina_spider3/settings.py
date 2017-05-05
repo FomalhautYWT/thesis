@@ -13,7 +13,7 @@ NEWSPIDER_MODULE = 'Sina_spider3.spiders'
 DOWNLOADER_MIDDLEWARES = {
     "Sina_spider3.middleware.UserAgentMiddleware": 401,
     "Sina_spider3.middleware.CookiesMiddleware": 402,
-	"Sina_spider3.HttpProxyMiddleware.HttpProxyMiddleware" : 543,
+#	"Sina_spider3.HttpProxyMiddleware.HttpProxyMiddleware" : 543,
 }
 ITEM_PIPELINES = {
     "Sina_spider3.pipelines.MongoDBPipeline": 403,
@@ -34,7 +34,7 @@ FILTER_HOST = 'localhost'
 FILTER_PORT = 6379
 FILTER_DB = 0
 
-DOWNLOAD_DELAY = 1  # 间隔时间
+DOWNLOAD_DELAY = 3  # 间隔时间
 # LOG_LEVEL = 'INFO'  # 日志级别
 CONCURRENT_REQUESTS = 1  # 默认为16
 # CONCURRENT_ITEMS = 1

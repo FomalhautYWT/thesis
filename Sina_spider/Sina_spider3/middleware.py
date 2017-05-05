@@ -54,7 +54,7 @@ class CookiesMiddleware(RetryMiddleware):
                 redisKeys.remove(elem)
 
     def process_response(self, request, response, spider):
-        if response.status in [300, 301, 302, 303]:
+        if response.status in [300, 301, 302, 303, 400]:
             try:
                 redirect_url = response.headers["location"]
                 if "login.weibo" in redirect_url or "login.sina" in redirect_url:  # Cookie失效

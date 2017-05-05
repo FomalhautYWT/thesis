@@ -40,7 +40,7 @@ class Spider(RedisSpider):
                 starttime = now - deltaDay
                 starttime = starttime.strftime('%Y%m%d')
                 print starttime
-                url_tweets_search = "https://weibo.cn/search/mblog?&keyword=%s&filter=hasori&sort=time&page=1&starttime=%s&endtime=%s" % (keyword , starttime , starttime)
+                url_tweets_search = "https://weibo.cn/search/mblog?&keyword=%s&filter=hasori&sort=hot&page=1&starttime=%s&endtime=%s" % (keyword , starttime , starttime)
                 yield Request(url=url_tweets_search, meta={"keyword":keyword}, callback=self.parse_keyword)
 
         #for uid in self.start_urls:
@@ -313,9 +313,10 @@ class Spider(RedisSpider):
                 if len(others) == 2:
                     keywordsItems["Tools"] = others[1]
             yield keywordsItems
-        url_next = selector.xpath('body/div[@class="pa" and @id="pagelist"]/form/div/a[text()="下页"]/@href'.decode('utf8')).extract()
+        url_next = selector.xpath(
+            u'body/div[@class="pa" and @id="pagelist"]/form/div/a[text()="\u4e0b\u9875"]/@href').extract()
         if url_next:
-            print "yes!!!!"
+            print "yes!!!!!!!!!!!!!!!!"
             yield Request(url=self.host + url_next[0], meta={"keyword": response.meta["keyword"]}, callback=self.parse_keyword,dont_filter=True)
     def parse_date(self, t):
         ''' 转换日期格式 '''
